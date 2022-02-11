@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import Renderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 
 test('renders learn react link', () => {
   render(<App />);
@@ -9,6 +9,7 @@ test('renders learn react link', () => {
 });
 
 test('rednering snapshot', () => {
-  const testRenderer = Renderer.create(<App />).toJSON
-  expect(testRenderer).toMatchSnapshot()
+  const snapshot = renderer.create(<App />).toJSON()
+  expect(snapshot).toMatchSnapshot()
+  // console.log(snapshot);
 })
