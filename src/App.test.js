@@ -1,15 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import renderer from 'react-test-renderer';
+import GitCard from './components/gitCard';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+beforeEach(() => {
+  // sets everything back to initial state before each test
+  fetch.resetMocks();
+})
 
 test('rednering snapshot', () => {
   const snapshot = renderer.create(<App />).toJSON()
   expect(snapshot).toMatchSnapshot()
   // console.log(snapshot);
+})
+
+test("receives GitHub name from GitHub REST API using jest fetch mock", async () => {
+  fetch.mockResponseOnce(JSON.stringify({ name: 'Aaron Lu' }))
+  render(<GitCard />)
+  const gitHubName = await waitFor(() => screen.getByRole('heading', { level: 2 }))
+  expect(gitHubName).toHaveTextContent('Aaron Lu')
 })

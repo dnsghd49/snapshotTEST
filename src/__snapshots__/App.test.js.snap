@@ -12,6 +12,9 @@ exports[`rednering snapshot 1`] = `
       className="App-logo"
       src="logo.svg"
     />
+    <div>
+      <h2 />
+    </div>
     <p>
       Edit 
       <code>
@@ -28,5 +31,8 @@ exports[`rednering snapshot 1`] = `
       Learn React
     </a>
   </header>
+  <h2>
+    test
+  </h2>
 </div>
 `;
