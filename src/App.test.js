@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 import renderer from 'react-test-renderer';
 import GitCard from './components/gitCard';
@@ -17,6 +17,6 @@ test('rednering snapshot', () => {
 test("receives GitHub name from GitHub REST API using jest fetch mock", async () => {
   fetch.mockResponseOnce(JSON.stringify({ name: 'Aaron Lu' }))
   render(<GitCard />)
-  const gitHubName = await waitFor(() => screen.getByRole('heading', { level: 2 }))
+  const gitHubName = await screen.findByRole('heading', { level: 2 })
   expect(gitHubName).toHaveTextContent('Aaron Lu')
 })
